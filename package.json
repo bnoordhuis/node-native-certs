@@ -1,0 +1,6 @@
+{
+    "package": "native-certs",
+    "scripts": {
+        "build": "cargo build --release"
+    }
+}
