@@ -13,6 +13,8 @@ napi-build = "1"
 napi = "2"
 napi-derive = "2"
 rustls-native-certs = "0.6.2"
+base64 = "0.13.0"
+regex = "1"
 
 [profile.release]
 codegen-units = 1

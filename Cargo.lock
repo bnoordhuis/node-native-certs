@@ -147,9 +147,11 @@ dependencies = [
 name = "node-native-certs"
 version = "0.1.0"
 dependencies = [
+ "base64",
  "napi",
  "napi-build",
  "napi-derive",
+ "regex",
  "rustls-native-certs",
 ]
 

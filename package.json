@@ -1,7 +1,30 @@
 {
-    "package": "native-certs",
+    "name": "native-certs",
+    "version": "0.0.0",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "napi": {
+      "name": "native-certs",
+      "triples": {
+        "additional": [
+          "aarch64-apple-darwin"
+        ]
+      }
+    },
+    "license": "MIT",
+    "devDependencies": {
+      "@napi-rs/cli": "^2.9.0",
+      "ava": "^4.2.0"
+    },
+    "engines": {
+      "node": ">= 10"
+    },
     "scripts": {
-        "build": "cargo build --release",
-        "test": "node test.js"
+      "artifacts": "napi artifacts",
+      "build": "napi build --platform --release",
+      "build:debug": "napi build --platform",
+      "prepublishOnly": "napi prepublish -t npm",
+      "test": "ava",
+      "version": "napi version"
     }
-}
+  }

@@ -34,7 +34,12 @@ $ NODE_EXTRA_CA_CERTS=cas.pem node app.js
 
 Performance consideration: loading certificates can be slow. Cache 'em.
 
-license
-=======
+## Development
 
-ISC, see the LICENSE file.
+```shell
+npm install
+npm run build
+npm test
+```
+
+If you need to run `napi-rs` scaffolder commands you may also need to `npm install -g @napi-rs/cli`.
