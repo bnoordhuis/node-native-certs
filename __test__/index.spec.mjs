@@ -1,12 +1,12 @@
 import test from 'ava'
-import https from 'https'
+import { get } from 'https'
 
 import { nativeCerts } from '../index.js'
 
-// Promise-ify https
-async function get(params) {
+// Promise-ify https.get
+async function pget(params) {
     return new Promise((resolve, reject) => {
-        const request = https.get(params, (response) => {
+        const request = get(params, (response) => {
             if (response.statusCode < 200 || response.statusCode > 299) {
                 reject(new Error('Failed to load page, status code: ' + response.statusCode));
             }
@@ -22,7 +22,7 @@ test('HTTPS request uses native certs', async (t) => {
     const ca = nativeCerts()
     t.not(ca.length, 0)
     
-    let responseBody = await get({ca, host: "example.com", path: "/"})
+    let responseBody = await pget({ca, host: "example.com", path: "/"})
 
     t.not(responseBody.length, 0)
 })

@@ -11,11 +11,12 @@ The `SSL_CERT_FILE` environment variable overrides the default trust store
 on all platforms.
 
 ```js
-const https = require("https")
-const nativeCerts = require("native-certs")
+import { nativeCerts } from 'native-certs'
+import { get } from 'https'
+
 const ca = nativeCerts()
 
-const req = https.get({ca, host: "google.com", path: "/"})
+const req = get({ca, host: "google.com", path: "/"})
 // do something with `req`
 ```
 
