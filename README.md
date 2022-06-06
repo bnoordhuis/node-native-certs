@@ -1,12 +1,9 @@
-node-native-certs
-=================
+# node-native-certs
 
 Load TLS root certificates from the system trust store.
 
 - Windows: loads certificates from the system certificate store.
-
 - macOS: loads certificates from the keychain.
-
 - Linux, BSD: looks for the OpenSSL CA bundle in the usual places.
   Honors the `SSL_CERT_FILE` and `SSL_CERT_DIR` environment variables.
 

@@ -25,6 +25,6 @@ jobs:
           node-version: 16.x
           architecture: ${{ matrix.architecture }}
       - run: npm install
-      - run: npm run build --target ${{ matrix.target }}
+      - run: npm run build
       - run: npm test
 
