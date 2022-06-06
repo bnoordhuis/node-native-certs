@@ -16,7 +16,7 @@ fn certs_to_strings(certs: Vec<Certificate>) -> Vec<String> {
             let buf = e.0.into();
             return cert_format(buf);
         })
-        .collect();
+        .collect()
 }
 
 fn cert_format(buf: Vec<u8>) -> String {
