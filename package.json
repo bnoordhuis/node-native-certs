@@ -11,7 +11,7 @@
         ]
       }
     },
-    "license": "MIT",
+    "license": "ISC",
     "devDependencies": {
       "@napi-rs/cli": "^2.9.0",
       "ava": "^4.2.0"

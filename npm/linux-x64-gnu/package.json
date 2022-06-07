@@ -11,7 +11,7 @@
   "files": [
     "native-certs.linux-x64-gnu.node"
   ],
-  "license": "MIT",
+  "license": "ISC",
   "engines": {
     "node": ">= 10"
   },

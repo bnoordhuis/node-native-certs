@@ -11,7 +11,7 @@
   "files": [
     "native-certs.win32-x64-msvc.node"
   ],
-  "license": "MIT",
+  "license": "ISC",
   "engines": {
     "node": ">= 10"
   }
