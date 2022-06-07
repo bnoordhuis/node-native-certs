@@ -1,6 +1,6 @@
-node_modules
+node_modules/
 package-lock.json
-target
+target/
 index.js
 *.d.ts
 *.node
