@@ -34,7 +34,7 @@ test('cert_format formats a certificate', async (t) => {
     const input = await readFile(certFile, 'utf-8')
     const inputWithoutAsciiArmor = input
         .replace("-----BEGIN CERTIFICATE-----\n", "")
-        .replace("-----END CERTIFICATE-----", "")
+        .replace("-----END CERTIFICATE-----\n", "")
     const certBuffer = Buffer.from(inputWithoutAsciiArmor, 'base64')
 
     const output = certFormat(certBuffer)
