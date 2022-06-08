@@ -39,7 +39,7 @@ test('cert_format formats a certificate', async (t) => {
 
     const output = certFormat(certBuffer)
 
-    t.is(output, input)
+    t.true(input.includes(output))
 })
 
 test('cert_format formats an empty certificate', (t) => {
