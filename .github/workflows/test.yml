@@ -24,6 +24,12 @@ jobs:
         with:
           node-version: 16.x
           architecture: ${{ matrix.architecture }}
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          override: true
+          toolchain: stable
+          target: ${{ matrix.target }}
       - run: npm install
       - run: npm run build
       - run: npm test
