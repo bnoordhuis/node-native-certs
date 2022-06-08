@@ -36,7 +36,6 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm test
-      - run: ls -l -a -h
       - uses: actions/upload-artifact@v3
         with:
           name: bindings-${{ matrix.target }}
