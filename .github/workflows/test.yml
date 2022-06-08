@@ -13,7 +13,7 @@ jobs:
             architecture: x64
           - os: macos-latest
             target: aarch64-apple-darwin
-            architecture: arm64
+            architecture: x64   # TODO change to arm64 when GitHub Actions gets M1 Mac runners
           - os: windows-latest
             target: x86_64-pc-windows-msvc
             architecture: x64
