@@ -5,7 +5,7 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         include:
           - os: macos-latest
@@ -31,7 +31,6 @@ jobs:
         with:
           profile: minimal
           override: true
-          toolchain: stable
           target: ${{ matrix.target }}
       - run: npm install
       - run: npm run build
