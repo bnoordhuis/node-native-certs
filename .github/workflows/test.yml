@@ -31,8 +31,14 @@ jobs:
         with:
           profile: minimal
           override: true
-          toolchain: stable-${{ matrix.target }}
+          toolchain: stable
+          target: ${{ matrix.target }}
       - run: npm install
       - run: npm run build
       - run: npm test
-
+      - run: ls -lah
+      - uses: actions/upload-artifact@v3
+        with:
+          name: bindings-${{ matrix.target }}
+          path: native-certs.*.node
+          if-no-files-found: warn
