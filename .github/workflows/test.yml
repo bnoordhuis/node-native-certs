@@ -5,12 +5,15 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         include:
           - os: macos-latest
             target: x86_64-apple-darwin
             architecture: x64
+          - host: macos-latest
+            target: aarch64-apple-darwin
+            architecture: arm64
           - os: windows-latest
             target: x86_64-pc-windows-msvc
             architecture: x64
