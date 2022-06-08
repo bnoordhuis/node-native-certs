@@ -11,7 +11,7 @@ jobs:
           - os: macos-latest
             target: x86_64-apple-darwin
             architecture: x64
-          - host: macos-latest
+          - os: macos-latest
             target: aarch64-apple-darwin
             architecture: arm64
           - os: windows-latest
