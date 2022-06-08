@@ -31,7 +31,7 @@ jobs:
         with:
           profile: minimal
           override: true
-          target: stable-${{ matrix.target }}
+          toolchain: stable-${{ matrix.target }}
       - run: npm install
       - run: npm run build
       - run: npm test
