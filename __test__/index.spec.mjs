@@ -1,7 +1,6 @@
 import test from 'ava'
 import { get } from 'https'
 import { Buffer } from 'node:buffer';
-import { readFile } from 'fs/promises'
 
 import { nativeCerts, certFormat } from '../index.js'
 

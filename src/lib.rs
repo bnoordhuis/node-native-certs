@@ -3,7 +3,7 @@ use napi_derive::napi;
 use rustls_native_certs::Certificate;
 
 #[napi]
-fn nativeCerts() -> Vec<String> {
+fn native_certs() -> Vec<String> {
     match rustls_native_certs::load_native_certs() {
         Ok(certs) => certs_to_strings(certs),
         _ => [].to_vec()
@@ -21,12 +21,12 @@ fn certs_to_strings(certs: Vec<Certificate>) -> Vec<String> {
 
 // Exposed for testing
 #[napi]
-fn certFormat(buf: napi::bindgen_prelude::Buffer) -> String {
-    cert_format(buf.to_vec())
+fn cert_format(buf: napi::bindgen_prelude::Buffer) -> String {
+    internal_cert_format(buf.to_vec())
 }
 
 
-fn cert_format(buf: Vec<u8>) -> String {
+fn internal_cert_format(buf: Vec<u8>) -> String {
     let mut cert = "-----BEGIN CERTIFICATE-----\n".to_string();
 
     let re = Regex::new(r".{1,64}").unwrap();
