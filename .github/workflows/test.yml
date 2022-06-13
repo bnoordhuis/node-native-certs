@@ -37,7 +37,7 @@ jobs:
       - run: npm install
       - run: npm run build -- --target ${{ matrix.target }}
       - run: npm test
-        if: !matrix.skipTests
+        if: ${{ !matrix.skipTests }}
       - name: Upload platform-specific binary
         uses: actions/upload-artifact@v3
         with:
