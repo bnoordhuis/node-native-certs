@@ -34,7 +34,7 @@ jobs:
           toolchain: stable
           target: ${{ matrix.target }}
       - run: npm install
-      - run: npm run build
+      - run: npm run build -- --target ${{ matrix.target }}
       - run: npm test
       - name: Upload platform-specific binary
         uses: actions/upload-artifact@v3
