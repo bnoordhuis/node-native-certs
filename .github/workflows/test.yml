@@ -36,8 +36,22 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm test
-      - uses: actions/upload-artifact@v3
+      - name: Upload platform-specific binary
+        uses: actions/upload-artifact@v3
         with:
           name: bindings-${{ matrix.target }}
           path: native-certs.*.node
-          if-no-files-found: warn
+          if-no-files-found: error
+  publish:
+    runs-on: ubuntu-latest
+    needs: build   # this waits for *all* the matrix build actions to complete
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Download all platform-specific binaries
+        uses: actions/download-artifact@v3
+        with:
+          path: native-certs.*.node
+      - run: ls -lh
