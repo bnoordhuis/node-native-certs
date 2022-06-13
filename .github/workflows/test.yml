@@ -13,7 +13,8 @@ jobs:
             architecture: x64
           - os: macos-latest
             target: aarch64-apple-darwin
-            architecture: x64   # TODO change to arm64 when GitHub Actions gets M1 Mac runners
+            architecture: x64   # Needed because the runner is an Intel Mac
+            skipTests: true     # Needed because the compiled arm64 code won't execute on the Intel Mac runner
           - os: windows-latest
             target: x86_64-pc-windows-msvc
             architecture: x64
@@ -36,6 +37,7 @@ jobs:
       - run: npm install
       - run: npm run build -- --target ${{ matrix.target }}
       - run: npm test
+        if: !matrix.skipTests
       - name: Upload platform-specific binary
         uses: actions/upload-artifact@v3
         with:
