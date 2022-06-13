@@ -53,5 +53,7 @@ jobs:
       - name: Download all platform-specific binaries
         uses: actions/download-artifact@v3
         with:
-          path: native-certs.*.node
-      - run: ls -lh
+          name: native-certs.*.node
+          path: artifacts
+      - run: ls -lh artifacts
+      - run: npm artifacts
