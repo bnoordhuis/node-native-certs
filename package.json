@@ -27,5 +27,6 @@
     "test": "ava",
     "version": "napi version"
   },
-  "description": "Load TLS certificates from the system trust store"
+  "description": "Load TLS certificates from the system trust store",
+  "repository": "github:bnoordhuis/node-native-certs"
 }

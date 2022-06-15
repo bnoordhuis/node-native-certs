@@ -12,6 +12,7 @@
     "native-certs.linux-x64-gnu.node"
   ],
   "description": "Load TLS certificates from the system trust store",
+  "repository": "github:bnoordhuis/node-native-certs",
   "license": "ISC",
   "engines": {
     "node": ">= 10"
