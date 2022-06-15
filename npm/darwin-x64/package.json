@@ -1,5 +1,5 @@
 {
-  "name": "native-certs-darwin-x64",
+  "name": "@bnoordhuis/native-certs-darwin-x64",
   "version": "0.0.0",
   "os": [
     "darwin"
@@ -11,6 +11,7 @@
   "files": [
     "native-certs.darwin-x64.node"
   ],
+  "description": "Load TLS certificates from the system trust store",
   "license": "ISC",
   "engines": {
     "node": ">= 10"

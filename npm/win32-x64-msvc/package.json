@@ -1,5 +1,5 @@
 {
-  "name": "native-certs-win32-x64-msvc",
+  "name": "@bnoordhuis/native-certs-win32-x64-msvc",
   "version": "0.0.0",
   "os": [
     "win32"
@@ -11,6 +11,7 @@
   "files": [
     "native-certs.win32-x64-msvc.node"
   ],
+  "description": "Load TLS certificates from the system trust store",
   "license": "ISC",
   "engines": {
     "node": ">= 10"
