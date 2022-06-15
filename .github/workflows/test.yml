@@ -61,3 +61,4 @@ jobs:
       - name: List packages
         run: ls -R ./npm
         shell: bash
+      - run: npm publish --dry-run
