@@ -1,5 +1,5 @@
-import test from 'ava'
-import { get } from 'https'
+import assert from 'assert';
+import { get } from 'https';
 import { Buffer } from 'node:buffer';
 
 import { nativeCerts, certFormat } from '../index.js'
@@ -19,16 +19,18 @@ async function pget(params) {
     })
 }
 
-test('HTTPS request uses native certs', async (t) => {
+// HTTPS request should use native certs
+{
     const ca = nativeCerts()
-    t.not(ca.length, 0)
+    assert.notEqual(ca.length, 0)
     
-    await pget({ca, host: "npmjs.com", path: "/"})
+    await pget({ca, host: "www.npmjs.com", path: "/"})
 
-    t.pass()
-})
+    assert.ok('request was ok')
+}
 
-test('cert_format formats a certificate', async (t) => {
+// cert_format should format a certificate
+{
     const input = `-----BEGIN CERTIFICATE-----
 MIIE5jCCAs4CCQD5/huzlZjclTANBgkqhkiG9w0BAQsFADA1MQswCQYDVQQGEwJV
 UzEQMA4GA1UECgwHRXhhbXBsZTEUMBIGA1UEAwwLZXhhbXBsZS5jb20wHhcNMjIw
@@ -65,10 +67,11 @@ RgJ6aGUHlpoSEYnBkMNJ/fL5WTu8HJ+l4RmDgpkiR+JfX05/tm5DkJjWVafsjs9e
     const certBuffer = Buffer.from(inputWithoutAsciiArmor, 'base64')
     const output = certFormat(certBuffer)
 
-    t.is(input.trim(), output.trim())
-})
+    assert.strictEqual(input.trim(), output.trim())
+}
 
-test('cert_format formats an empty certificate', (t) => {
+// cert_format should format an empty certificate
+{
     const input = Buffer.from([], 'base64')
 
     const actual = certFormat(input)
@@ -77,5 +80,5 @@ test('cert_format formats an empty certificate', (t) => {
     expected += "-----BEGIN CERTIFICATE-----\n"
     expected += "-----END CERTIFICATE-----\n"
 
-    t.is(actual, expected)
-})
+    assert.strictEqual(actual, expected)
+}

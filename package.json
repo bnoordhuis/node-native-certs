@@ -13,8 +13,7 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "@napi-rs/cli": "^2.9.0",
-    "ava": "^4.2.0"
+    "@napi-rs/cli": "^2.9.0"
   },
   "engines": {
     "node": ">= 10"
@@ -24,7 +23,7 @@
     "build": "napi build --platform --release",
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
-    "test": "ava",
+    "test": "node __test__/index.mjs",
     "version": "napi version"
   },
   "description": "Load TLS certificates from the system trust store",
