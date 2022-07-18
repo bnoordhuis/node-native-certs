@@ -1,12 +1,13 @@
 use regex::Regex;
 use napi_derive::napi;
+use napi::bindgen_prelude::*;
 use rustls_native_certs::Certificate;
 
 #[napi]
-fn native_certs() -> Vec<String> {
-    match rustls_native_certs::load_native_certs() {
-        Ok(certs) => certs_to_strings(certs),
-        _ => [].to_vec()
+fn native_certs() -> Result<Vec<String>> {
+    return match rustls_native_certs::load_native_certs() {
+        Ok(certs) => Ok(certs_to_strings(certs)),
+        Err(e) => Err(Error::from(e))
     }
 }
 
@@ -21,7 +22,7 @@ fn certs_to_strings(certs: Vec<Certificate>) -> Vec<String> {
 
 // Exposed for testing
 #[napi]
-fn cert_format(buf: napi::bindgen_prelude::Buffer) -> String {
+fn cert_format(buf: Buffer) -> String {
     internal_cert_format(buf.to_vec())
 }
 
