@@ -1,8 +1,7 @@
-import assert from 'assert';
+import { notEqual, ok, strictEqual } from 'assert';
 import { get } from 'https';
 import { Buffer } from 'node:buffer';
-
-import { nativeCerts, certFormat } from '../index.js'
+import { loadNativeCerts, certFormat } from '../index.js';
 
 // Promise-ify https.get
 async function pget(params) {
@@ -21,12 +20,12 @@ async function pget(params) {
 
 // HTTPS request should use native certs
 {
-    const ca = nativeCerts()
-    assert.notEqual(ca.length, 0)
+    const ca = loadNativeCerts()
+    notEqual(ca.length, 0)
     
     await pget({ca, host: "www.npmjs.com", path: "/"})
 
-    assert.ok('request was ok')
+    ok('request was ok')
 }
 
 // cert_format should format a certificate
@@ -67,7 +66,7 @@ RgJ6aGUHlpoSEYnBkMNJ/fL5WTu8HJ+l4RmDgpkiR+JfX05/tm5DkJjWVafsjs9e
     const certBuffer = Buffer.from(inputWithoutAsciiArmor, 'base64')
     const output = certFormat(certBuffer)
 
-    assert.strictEqual(input.trim(), output.trim())
+    strictEqual(input.trim(), output.trim())
 }
 
 // cert_format should format an empty certificate
@@ -80,5 +79,5 @@ RgJ6aGUHlpoSEYnBkMNJ/fL5WTu8HJ+l4RmDgpkiR+JfX05/tm5DkJjWVafsjs9e
     expected += "-----BEGIN CERTIFICATE-----\n"
     expected += "-----END CERTIFICATE-----\n"
 
-    assert.strictEqual(actual, expected)
+    strictEqual(actual.trim(), expected.trim())
 }

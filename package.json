@@ -13,14 +13,15 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "@napi-rs/cli": "^2.9.0"
+    "@napi-rs/cli": "^2.9.0",
+    "@types/node": "^16.11.45"
   },
   "engines": {
     "node": ">= 10"
   },
   "scripts": {
     "artifacts": "napi artifacts",
-    "build": "napi build --platform --release",
+    "build": "napi build --js lib.js --dts lib.d.ts --platform --release",
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "node __test__/index.mjs",

@@ -1,43 +1,21 @@
-use regex::Regex;
 use napi_derive::napi;
 use napi::bindgen_prelude::*;
 use rustls_native_certs::Certificate;
 
 #[napi]
-fn native_certs() -> Result<Vec<String>> {
+fn native_certs() -> Result<Vec<Buffer>> {
     return match rustls_native_certs::load_native_certs() {
-        Ok(certs) => Ok(certs_to_strings(certs)),
+        Ok(certs) => Ok(certs_to_buffers(certs)),
         Err(e) => Err(Error::from(e))
     }
 }
 
-fn certs_to_strings(certs: Vec<Certificate>) -> Vec<String> {
+// Return the certs as raw DER-encoded buffers (JS will convert this to PEM encoding later)
+fn certs_to_buffers(certs: Vec<Certificate>) -> Vec<Buffer> {
     certs.into_iter()
         .map(|e| {
             let buf = e.0.into();
-            return cert_format(buf);
+            return buf;
         })
         .collect()
-}
-
-// Exposed for testing
-#[napi]
-fn cert_format(buf: Buffer) -> String {
-    internal_cert_format(buf.to_vec())
-}
-
-
-fn internal_cert_format(buf: Vec<u8>) -> String {
-    let mut cert = "-----BEGIN CERTIFICATE-----\n".to_string();
-
-    let re = Regex::new(r".{1,64}").unwrap();
-    let c = base64::encode(buf);
-    for result in re.find_iter(&c) {
-        cert += result.as_str();
-        cert += "\n";
-    }
-
-    cert += "-----END CERTIFICATE-----\n";
-    
-    return cert;
 }
