@@ -17,9 +17,9 @@ npm install native-certs
 
 ```js
 const https = require("https")
-const nativeCerts = require("native-certs")
+const { loadNativeCerts } = require("native-certs")
 
-const ca = nativeCerts()
+const ca = loadNativeCerts()
 
 const req = https.get({ca, host: "google.com", path: "/"})
 // do something with `req`

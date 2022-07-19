@@ -10,7 +10,7 @@ fn native_certs() -> Result<Vec<Buffer>> {
     }
 }
 
-// Return the certs as raw DER-encoded buffers (JS will convert this to PEM encoding later)
+// Return the certs as raw DER-encoded buffers (the JS layer will convert them to PEM-encoded strings)
 fn certs_to_buffers(certs: Vec<Certificate>) -> Vec<Buffer> {
     certs.into_iter()
         .map(|e| {
