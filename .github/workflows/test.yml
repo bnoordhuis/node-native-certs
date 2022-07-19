@@ -1,0 +1,64 @@
+name: Node.js CI
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            architecture: x64
+          - os: macos-latest
+            target: aarch64-apple-darwin
+            architecture: x64   # Needed because the runner is an Intel Mac
+            skipTests: true     # Needed because the compiled arm64 code won't execute on the Intel Mac runner
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            architecture: x64
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            architecture: x64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          architecture: ${{ matrix.architecture }}
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          override: true
+          toolchain: stable
+          target: ${{ matrix.target }}
+      - run: npm install
+      - run: npm run build -- --target ${{ matrix.target }}
+      - run: npm test
+        if: ${{ !matrix.skipTests }}
+      - name: Upload platform-specific binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: bindings-${{ matrix.target }}
+          path: native-certs.*.node
+          if-no-files-found: error
+  publish:
+    runs-on: ubuntu-latest
+    needs: build   # this waits for *all* the matrix build actions to complete
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Download all platform-specific binaries
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts
+      - run: npm install
+      - run: npm run artifacts
+      - name: List packages
+        run: ls -R ./npm
+        shell: bash
+      - run: npm publish --dry-run

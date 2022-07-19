@@ -1,0 +1,23 @@
+{
+  "name": "@bnoordhuis/native-certs-linux-x64-gnu",
+  "version": "0.0.0",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "native-certs.linux-x64-gnu.node",
+  "files": [
+    "native-certs.linux-x64-gnu.node"
+  ],
+  "description": "Load TLS certificates from the system trust store",
+  "repository": "github:bnoordhuis/node-native-certs",
+  "license": "ISC",
+  "engines": {
+    "node": ">= 10"
+  },
+  "libc": [
+    "glibc"
+  ]
+}

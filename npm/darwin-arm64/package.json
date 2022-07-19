@@ -1,0 +1,20 @@
+{
+  "name": "@bnoordhuis/native-certs-darwin-arm64",
+  "version": "0.0.0",
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "arm64"
+  ],
+  "main": "native-certs.darwin-arm64.node",
+  "files": [
+    "native-certs.darwin-arm64.node"
+  ],
+  "description": "Load TLS certificates from the system trust store",
+  "repository": "github:bnoordhuis/node-native-certs",
+  "license": "ISC",
+  "engines": {
+    "node": ">= 10"
+  }
+}

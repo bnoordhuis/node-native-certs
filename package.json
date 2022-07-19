@@ -1,6 +1,32 @@
 {
-    "package": "native-certs",
-    "scripts": {
-        "build": "cargo build --release"
+  "name": "@bnoordhuis/native-certs",
+  "version": "0.0.0",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "napi": {
+    "name": "native-certs",
+    "triples": {
+      "additional": [
+        "aarch64-apple-darwin"
+      ]
     }
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@napi-rs/cli": "^2.9.0",
+    "@types/node": "^16.11.45"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "scripts": {
+    "artifacts": "napi artifacts",
+    "build": "napi build --js lib.js --dts lib.d.ts --platform --release",
+    "build:debug": "napi build --platform",
+    "prepublishOnly": "napi prepublish -t npm",
+    "test": "node __test__/index.mjs",
+    "version": "napi version"
+  },
+  "description": "Load TLS certificates from the system trust store",
+  "repository": "github:bnoordhuis/node-native-certs"
 }

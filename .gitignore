@@ -1,4 +1,6 @@
-/binding.node
-/node_modules/
-/package-lock.json
-/target/
+node_modules/
+package-lock.json
+target/
+lib.js
+lib.d.ts
+*.node

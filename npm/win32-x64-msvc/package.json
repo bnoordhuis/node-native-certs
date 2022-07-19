@@ -1,0 +1,20 @@
+{
+  "name": "@bnoordhuis/native-certs-win32-x64-msvc",
+  "version": "0.0.0",
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "native-certs.win32-x64-msvc.node",
+  "files": [
+    "native-certs.win32-x64-msvc.node"
+  ],
+  "description": "Load TLS certificates from the system trust store",
+  "repository": "github:bnoordhuis/node-native-certs",
+  "license": "ISC",
+  "engines": {
+    "node": ">= 10"
+  }
+}
